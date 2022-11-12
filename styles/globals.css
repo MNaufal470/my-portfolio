@@ -1,26 +1,78 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700&family=Poppins:wght@100;200;400;500;600;700&display=swap");
+@import "remixicon/fonts/remixicon.css";
+@layer base {
+  span,
+  p {
+    font-family: "Poppins", sans-serif;
   }
-  body {
-    color: white;
-    background: black;
+  h3,
+  h1,
+  h2,
+  label {
+    font-family: "Montserrat", sans-serif;
+  }
+  ::-webkit-scrollbar {
+    width: 0.6rem;
+    background: #303035;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #f9004d;
+    border-radius: 0.5rem;
+  }
+}
+@layer components {
+  .buttonContact {
+    background: linear-gradient(to right bottom, #212428, #16181c);
+    cursor: pointer;
+  }
+  .hero .buttonContact img {
+    transition: 1s;
+  }
+  .shadow-1 {
+    box-shadow: 10px 10px 19px #1c1e22, -10px -10px 19px #262a2e;
+  }
+  .buttonContact:hover,
+  .buttonAbout:hover {
+    background: #1e2125;
+  }
+  .buttonContact:hover img {
+    transform: rotate(360deg);
+  }
+  .buttonAbout.aboutActive {
+    background: #1e2125;
+    color: #f9004d;
+    font-weight: 600;
+  }
+  .buttonAbout {
+    background: linear-gradient(to right bottom, #212428, #16181c);
+    cursor: pointer;
+    color: #878e99;
+    text-align: center;
+  }
+  .progress {
+    background: linear-gradient(145deg, #6a67ce 0%, #fc636b 100%);
+  }
+  .progressShadow {
+    box-shadow: inset 8px 8px 16px rgb(0 0 0 / 46%),
+      inset -8px -8px 16px rgb(56 62 69 / 46%);
+  }
+  .inner-shadow {
+    box-shadow: 1px 4px 2px -3px rgba(0, 0, 0, 0.7) inset,
+      -1px -3px 3px -2px rgba(255, 255, 255, 0.2) inset;
+  }
+  .inputContact {
+    @apply w-full bg-[#191b1e] rounded-md inner-shadow text-[#c4cfde] py-2 outline-none transition-all focus:border-[#fc636b]/40  hover:border-[#fc636b]/40 hover:border-b focus:border-b border-[#fc636b]/40;
+  }
+  .labelInput {
+    @apply text-[#a0a8b3] tracking-[1px] uppercase text-sm font-normal;
+  }
+  .backgroundButton {
+    background: linear-gradient(145deg, #1e2024, #23272b);
+  }
+  .invalid {
+    @apply border border-[#fc636b];
   }
 }
