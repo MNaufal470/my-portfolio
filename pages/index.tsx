@@ -1,4 +1,4 @@
-import { GetStaticProps } from "next";
+import { GetServerSideProps, GetStaticProps } from "next";
 import Head from "next/head";
 import About from "../components/About";
 import Contact from "../components/Contact";
@@ -52,7 +52,7 @@ export default function Home({
   );
 }
 
-export const getStaticProps: GetStaticProps<Props> = async () => {
+export const getServerSideProps: GetServerSideProps<Props> = async () => {
   const pageInfo: PageInfo = await fetchUserInfo();
   const socials: Social[] = await fetchSocial();
   const skills: Skill[] = await fetchSkills();
@@ -68,6 +68,5 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
       projects,
       superSkill,
     },
-    revalidate: 36000,
   };
 };
