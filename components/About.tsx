@@ -52,15 +52,15 @@ export default function About({ pageInfo, skills, socials }: Props) {
               }`}
               onClick={() => setSelected("skill")}
             >
-              My Skills
+              Skills
             </span>
             <span
-              className={`md:p-4 buttonAbout  ${
+              className={`p-4 h-full  buttonAbout  ${
                 selected === "education" ? "aboutActive" : ""
               }`}
               onClick={() => setSelected("education")}
             >
-              My Educations
+              Educations
             </span>
           </div>
           <div className="shadow-1 rounded-2xl  p-6  overflow-x-hidden">
@@ -112,6 +112,7 @@ export default function About({ pageInfo, skills, socials }: Props) {
                     transition={{ duration: 1 }}
                     animate={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
+                    key={item._id}
                   >
                     <div className="flex justify-between">
                       <div className="flex items-center gap-x-2">
@@ -162,7 +163,7 @@ export default function About({ pageInfo, skills, socials }: Props) {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                 >
-                  <h1 className="text-6xl pt-10 font-bold text-[#c4cfde] ">
+                  <h1 className="text-5xl md:text-6xl pt-10 font-bold text-[#c4cfde] ">
                     {pageInfo?.name}
                   </h1>
                   <p className="text-[#878e99] font-normal text-xl mb-20">

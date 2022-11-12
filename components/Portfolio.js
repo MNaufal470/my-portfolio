@@ -14,7 +14,7 @@ export default function Portfolio({ projects }) {
     <section className=" pt-32 md:pt-60 ">
       <div className="max-w-6xl mx-auto">
         <motion.div
-          className="text-center"
+          className="text-center px-5"
           initial={{ opacity: 0 }}
           whileInView={{
             opacity: 1,
@@ -72,7 +72,7 @@ export default function Portfolio({ projects }) {
                         {new Date(item.dateStarted).getFullYear()}
                       </p>
                     </div>
-                    <h1 className=" text-2xl pt-3 font-bold text-[#c4cfde]  group-hover:text-[#fff] transition-all duration-300">
+                    <h1 className="text-2xl pt-3 font-bold text-[#c4cfde]  group-hover:text-[#fff] transition-all duration-300">
                       {item.name}
                       <i className="ri-arrow-right-up-line text-sm opacity-0 group-hover:text-2xl group-hover:opacity-100 transition-all duration-300 text-[#f9004d]"></i>
                     </h1>

@@ -6,7 +6,6 @@ import { PageInfo } from "../../typing";
 const query = groq`
 *[_type == "pageInfo"][0]
 `;
-
 type Data = {
   pageInfo: PageInfo;
 };

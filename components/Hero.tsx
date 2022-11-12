@@ -48,22 +48,18 @@ export default function Hero({ pageInfo, skills }: Props) {
                 Best Skill On
               </span>
               <div className="flex hero items-center gap-x-4">
-                {skills.map((item) => {
-                  if (item.isBestSkill) {
-                    return (
-                      <div
-                        className="p-3 buttonContact rounded-md shadow-1  "
-                        key={item._id}
-                      >
-                        <img
-                          src={urlFor(item?.image).url()}
-                          alt=""
-                          className="w-10 h-10 object-contain"
-                        />
-                      </div>
-                    );
-                  }
-                })}
+                {skills.map((item) => (
+                  <div
+                    className="p-3 buttonContact rounded-md shadow-1  "
+                    key={item._id}
+                  >
+                    <img
+                      src={urlFor(item?.image).url()}
+                      alt=""
+                      className="w-10 h-10 object-contain"
+                    />
+                  </div>
+                ))}
               </div>
             </div>
             <div className="space-y-3">

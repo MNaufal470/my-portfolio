@@ -17,8 +17,15 @@ type Props = {
   socials: Social[];
   skills: Skill[];
   projects: Project[];
+  superSkill: Skill[];
 };
-export default function Home({ pageInfo, socials, skills, projects }: Props) {
+export default function Home({
+  pageInfo,
+  socials,
+  skills,
+  projects,
+  superSkill,
+}: Props) {
   return (
     <div>
       <Head>
@@ -31,7 +38,7 @@ export default function Home({ pageInfo, socials, skills, projects }: Props) {
       </Head>
       <div className="w-full h-screen overflow-y-scroll bg-[#212428] overflow-x-hidden ">
         <Header socials={socials} />
-        <Hero pageInfo={pageInfo} skills={skills} />
+        <Hero pageInfo={pageInfo} skills={superSkill} />
         <About pageInfo={pageInfo} skills={skills} socials={socials} />
         <Portfolio projects={projects} />
         <Contact socials={socials} pageInfo={pageInfo} />
@@ -50,13 +57,17 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
   const socials: Social[] = await fetchSocial();
   const skills: Skill[] = await fetchSkills();
   const projects: Project[] = await fetchProjects();
+  const superSkill: Skill[] = skills.filter(
+    (item) => item.isBestSkill === true
+  );
   return {
     props: {
       pageInfo,
       socials,
       skills,
       projects,
+      superSkill,
     },
-    revalidate: 3600,
+    revalidate: 36000,
   };
 };
