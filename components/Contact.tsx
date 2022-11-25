@@ -33,7 +33,7 @@ export default function Contact({ pageInfo, socials }: Props) {
         <div className="flex mt-20 gap-x-20 gap-y-10 px-5 lg:px-0 justify-center flex-col lg:flex-row">
           <motion.div
             className="p-5 px-7 bg-[#212428] shadow-1 rounded-lg max-w-sm md:max-w-full lg:max-w-sm"
-            initial={{ opacity: 0, x: -500 }}
+            initial={{ opacity: 0, x: -200 }}
             whileInView={{
               opacity: 1,
               x: 0,
@@ -86,7 +86,7 @@ export default function Contact({ pageInfo, socials }: Props) {
           </motion.div>
           <motion.div
             className="max-w-xl md:max-w-full lg:max-w-xl  bg-[#212428] shadow-1 rounded-lg p-5 px-7"
-            initial={{ opacity: 0, x: 500 }}
+            initial={{ opacity: 0, x: 200 }}
             whileInView={{
               opacity: 1,
               x: 0,

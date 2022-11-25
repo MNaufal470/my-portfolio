@@ -33,7 +33,7 @@ export default function Portfolio({ projects }) {
         </motion.div>
         <motion.div
           className=" grid grid-cols-1 px-5 lg:px-0 md:grid-cols-2 lg:grid-cols-3 mt-10 gap-10"
-          initial={{ opacity: 0, x: -500 }}
+          initial={{ opacity: 0, x: -200 }}
           whileInView={{
             opacity: 1,
             x: 0,

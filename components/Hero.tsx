@@ -35,7 +35,7 @@ export default function Hero({ pageInfo, skills }: Props) {
           <h1 className="flex  text-white font-bold gap-x-2 text-5xl">
             Hi, I'm <span className="text-[#ff014f]">{pageInfo.surName}</span>
           </h1>
-          <h1 className="text-5xl font-bold text-white ">
+          <h1 className="text-xl md:text-5xl font-bold text-white ">
             <span className="mr-3">{text}</span>
             <Cursor cursorColor="#ff014f" />
           </h1>

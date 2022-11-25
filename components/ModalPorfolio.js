@@ -73,7 +73,7 @@ export default function ModalPorfolio({
               <Dialog.Panel className="w-full     bg-[#212428] lg:p-20  text-left align-middle shadow-xl transition-all">
                 <div className="w-full shadow-1   rounded-xl p-10">
                   <div className="relative grid lg:grid-cols-2 grid-cols-1 gap-x-20 gap-y-5 pb-10 border-b-2 border-[#121415] pt-5 lg:pt-0">
-                    <div className="relative h-96">
+                    <div className="relative h-48 md:h-96">
                       <motion.img
                         src={imageSelected ? urlFor(imageSelected).url() : ""}
                         alt=""
@@ -123,7 +123,7 @@ export default function ModalPorfolio({
                           </span>
                         </p>
                       </div>
-                      <div className="flex hero items-center justify-start mt-3 gap-x-4">
+                      <div className="flex flex-wrap gap-10 md:gap-5 hero items-center justify-start mt-3 gap-x-4">
                         {project?.technologies?.map((tech) => (
                           <div
                             className="p-3  rounded-md shadow-1  "
