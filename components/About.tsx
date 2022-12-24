@@ -66,7 +66,7 @@ export default function About({ pageInfo, skills, socials }: Props) {
           <div className="shadow-1 rounded-2xl  p-6  overflow-x-hidden">
             {selected === "skill" && (
               <div className="grid lg:grid-cols-2 grid-cols-1 gap-5 w-full">
-                {not0.slice(0, not0.length / 2 + 1).map((item) => (
+                {not0.slice(0, not0.length / 2).map((item) => (
                   <motion.div
                     className="flex flex-col gap-y-1"
                     initial={{ x: -500, opacity: 0 }}

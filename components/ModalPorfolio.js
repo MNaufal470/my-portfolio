@@ -1,9 +1,10 @@
-import React, { useEffect } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import { Fragment, useState } from "react";
+import { Fragment, useCallback, useRef } from "react";
 import { motion } from "framer-motion";
 import { urlFor } from "../sanity";
-
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/navigation";
 export default function ModalPorfolio({
   isShow,
   item,
@@ -11,39 +12,21 @@ export default function ModalPorfolio({
   selected,
   project,
 }) {
-  const [imageSelected, setImageSelected] = useState(selected);
+  const sliderRef = useRef(null);
+
   function closeModal() {
     setModal({ item, show: false });
   }
-  const nextHandler = () => {
-    let stateIndex = item.images.findIndex(
-      (item) => item._key === imageSelected._key
-    );
-    if (stateIndex === 0) {
-      setImageSelected(item.images[1]);
-    }
-    if (stateIndex !== item.images.length - 1) {
-      setImageSelected(item.images[stateIndex + 1]);
-    }
-    if (stateIndex === item.images.length - 1) {
-      setImageSelected(item.images[0]);
-    }
-  };
-  const prevHandler = () => {
-    let stateIndex = item.images.findIndex(
-      (item) => item._key === imageSelected._key
-    );
-    if (stateIndex === 0) {
-      setImageSelected(item.images[item.images.length - 1]);
-    }
-    if (stateIndex !== item.images.length - 1) {
-      setImageSelected(item.images[stateIndex - 1]);
-    }
-  };
-  useEffect(() => {
-    setImageSelected(selected);
-  }, [item]);
 
+  const handlePrev = useCallback(() => {
+    if (!sliderRef.current) return;
+    sliderRef.current.swiper.slidePrev();
+  }, []);
+
+  const handleNext = useCallback(() => {
+    if (!sliderRef.current) return;
+    sliderRef.current.swiper.slideNext();
+  }, []);
   return (
     <Transition appear show={isShow} as={Fragment}>
       <Dialog as="div" className="relative z-10  " onClose={closeModal}>
@@ -74,27 +57,39 @@ export default function ModalPorfolio({
                 <div className="w-full shadow-1   rounded-xl p-10">
                   <div className="relative grid lg:grid-cols-2 grid-cols-1 gap-x-20 gap-y-5 pb-10 border-b-2 border-[#121415] pt-5 lg:pt-0">
                     <div className="relative h-48 md:h-96">
-                      <motion.img
-                        src={imageSelected ? urlFor(imageSelected).url() : ""}
-                        alt=""
-                        className="w-full h-48 md:h-96 lg:h-96 rounded-lg object-cover object-top"
-                        initial={{ opacity: 0 }}
-                        whileInView={{
-                          opacity: 1,
-                        }}
-                        transition={{
-                          duration: 1.5,
-                        }}
-                      />
-                      <i
-                        className="ri-arrow-left-line text-xl text-[#c4cfde] absolute top-[50%] -left-5 p-2 px-3 bg-[#212428] rounded-full shadow-1 cursor-pointer hover:text-white"
-                        onClick={prevHandler}
-                      ></i>
-                      <i
-                        className={`ri-arrow-right-line text-xl  absolute top-[50%] -right-5 p-2 px-3 bg-[#212428] rounded-full shadow-1 cursor-pointer hover:text-white text-[#c4cfde] 
-                      `}
-                        onClick={nextHandler}
-                      ></i>
+                      <Swiper
+                        spaceBetween={50}
+                        slidesPerView={1}
+                        ref={sliderRef}
+                        loop
+                      >
+                        {item.images?.map((img) => (
+                          <SwiperSlide key={img._key}>
+                            <motion.img
+                              src={urlFor(img).url()}
+                              alt=""
+                              className="w-full h-48 md:h-96 lg:h-96 rounded-lg object-cover object-top"
+                              initial={{ opacity: 0 }}
+                              whileInView={{
+                                opacity: 1,
+                              }}
+                              transition={{
+                                duration: 1.5,
+                              }}
+                            />
+                          </SwiperSlide>
+                        ))}
+
+                        <i
+                          className="ri-arrow-left-line text-xl text-[#c4cfde] absolute top-[50%] -left-0 p-2 px-3 bg-[#212428] rounded-full shadow-1 cursor-pointer hover:text-white z-50"
+                          onClick={handlePrev}
+                        ></i>
+                        <i
+                          className={`ri-arrow-right-line text-xl  absolute top-[50%] -right-0 p-2 px-3 bg-[#212428] rounded-full shadow-1 cursor-pointer hover:text-white text-[#c4cfde] 
+                          z-50`}
+                          onClick={handleNext}
+                        ></i>
+                      </Swiper>
                     </div>
                     <div className="space-y-3 ">
                       <h1 className="text-3xl md:text-4xl pt-3 font-bold text-[#c4cfde] ">
@@ -118,9 +113,16 @@ export default function ModalPorfolio({
                         </p>
                         <p className="text-[#c4cfde] font-semibold">
                           URL:{" "}
-                          <span className="text-[#878e99] underline">
+                          <a
+                            className="text-[#878e99] underline"
+                            href={`${
+                              project.url !== "Under Maintenence"
+                                ? project.url
+                                : ""
+                            }`}
+                          >
                             {project.url}
-                          </span>
+                          </a>
                         </p>
                       </div>
                       <div className="flex flex-wrap gap-10 md:gap-5 hero items-center justify-start mt-3 gap-x-4">
